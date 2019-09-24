@@ -1,0 +1,43 @@
+<!--<h1> All Songs </h1>
+
+<% @songs.each do |song| %>
+<h4><%= song.title %> </h4>
+<% if song.released? %>
+<p>Release Year: <%= song.release_year %></p>
+<% end %>
+<p>Artist Name: <%= song.artist_name %></p>
+<p>Genre: <%= song.genre %></p>
+<% end %>
+
+
+
+<%= link_to "Create New Song", new_song_path %> -->
+
+<h1>All Songs</h1>
+
+<table>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Genre</th>
+      <th>Artist name</th>
+    </tr>
+
+    <tbody>
+        <% @songs.each do |song| %>
+        <tr>
+            <td><%= song.title %></td>
+            <td><%= song.release_year %></td>
+            <td><%= song.genre %></td>
+            <td><%= song.artist_name %></td>
+            <td>
+            <%= link_to "View", song %> |
+            <%= link_to 'Edit', edit_song_path(song) %> |
+            <%= form_tag song, method: "delete" do %>
+                <%= submit_tag "Delete" %>
+            <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
